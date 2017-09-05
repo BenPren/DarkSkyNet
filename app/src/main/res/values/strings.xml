@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Dark Sky Net</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="current_zip">Current ZIP: %S</string>
+    <string name="entering_will_remove">Entering a new ZIP will replace current.</string>
+    <string name="enter_zip">Enter 5 digit ZIP</string>
+
+    <string name="temperature">Temperature: %.1f°</string>
+    <string name="precipitation">Precipitation: %.0f%%</string>
+</resources>
