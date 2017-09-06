@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -80,6 +81,7 @@ public class WeatherUpdateService extends IntentService {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        startAlarmForService(WeatherUpdateService.this, true);
                     }
 
                     @Override
@@ -89,15 +91,15 @@ public class WeatherUpdateService extends IntentService {
                 });
     }
 
-    public static void startAlarmForService(Activity activity, boolean forceRefresh) {
+    public static void startAlarmForService(Context context, boolean forceRefresh) {
         PendingIntent pendingIntent;
         if(forceRefresh) {
-            pendingIntent = PendingIntent.getService(activity, 0, new Intent(activity, WeatherUpdateService.class), PendingIntent.FLAG_CANCEL_CURRENT);
+            pendingIntent = PendingIntent.getService(context, 0, new Intent(context, WeatherUpdateService.class), PendingIntent.FLAG_CANCEL_CURRENT);
         } else {
-            pendingIntent = PendingIntent.getService(activity, 0, new Intent(activity, WeatherUpdateService.class), PendingIntent.FLAG_NO_CREATE);
+            pendingIntent = PendingIntent.getService(context, 0, new Intent(context, WeatherUpdateService.class), PendingIntent.FLAG_NO_CREATE);
         }
-        AlarmManager alarmManager = (AlarmManager)activity.getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime(), 0, pendingIntent);
+        AlarmManager alarmManager = (AlarmManager)context.getSystemService(ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
 
 
     }

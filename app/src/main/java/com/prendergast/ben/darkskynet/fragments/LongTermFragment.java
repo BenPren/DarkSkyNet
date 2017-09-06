@@ -11,22 +11,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.zetterstrom.com.forecast.models.DataPoint;
 import android.zetterstrom.com.forecast.models.Forecast;
 
 import com.prendergast.ben.darkskynet.R;
-import com.prendergast.ben.darkskynet.model.ViewHolder;
+import com.prendergast.ben.darkskynet.model.DetailsViewHolder;
+import com.prendergast.ben.darkskynet.model.ForecastViewHolder;
 import com.prendergast.ben.darkskynet.model.WeatherModel;
 
 import java.text.DateFormat;
 import java.util.List;
 
 /**
+ *
  * Created by doubl on 9/2/2017.
  */
-
 public class LongTermFragment extends Fragment implements Observer<Forecast> {
 
     @Nullable
@@ -58,18 +59,12 @@ public class LongTermFragment extends Fragment implements Observer<Forecast> {
         }
 
         if(dataPoints.size() > 0) {
-            ListView listView = view.findViewById(R.id.forecastList);
+            ExpandableListView listView = view.findViewById(R.id.expandableForecastList);
             listView.setAdapter(new DataPointAdapter(dataPoints));
         }
     }
 
-//    @Override
-//    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//
-//    }
-//
-    private static class DataPointAdapter extends BaseAdapter {
+    private static class DataPointAdapter extends BaseExpandableListAdapter {
 
         List<DataPoint> dataPointList;
 
@@ -78,31 +73,69 @@ public class LongTermFragment extends Fragment implements Observer<Forecast> {
         }
 
         @Override
-        public int getCount() {
+        public int getGroupCount() {
             return dataPointList.size();
         }
 
         @Override
-        public Object getItem(int i) {
+        public int getChildrenCount(int i) {
+            return 1;
+        }
+
+        @Override
+        public Object getGroup(int i) {
             return dataPointList.get(i);
         }
 
         @Override
-        public long getItemId(int i) {
+        public Object getChild(int i, int i1) {
+            return dataPointList.get(i);
+        }
+
+        @Override
+        public long getGroupId(int i) {
             return i;
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
+        public long getChildId(int i, int i1) {
+            return i << 16 + i1;
+        }
+
+        @Override
+        public boolean hasStableIds() {
+            return false;
+        }
+
+        @Override
+        public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
             if(view == null) {
-                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_forecast, viewGroup, false);
-                view.setTag(new ViewHolder(view, DateFormat.getDateInstance(DateFormat.DEFAULT)));
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_expandable_forecast, viewGroup, false);
+                view.setTag(new ForecastViewHolder(view, DateFormat.getDateInstance(DateFormat.DEFAULT)));
             }
 
-            ViewHolder holder = (ViewHolder)view.getTag();
+            ForecastViewHolder holder = (ForecastViewHolder)view.getTag();
             holder.updateViews(viewGroup.getContext(), dataPointList.get(i));
             return view;
         }
+
+        @Override
+        public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
+            if(view == null) {
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_forecast_details, viewGroup, false);
+                view.setTag(new DetailsViewHolder(view));
+            }
+
+            DetailsViewHolder holder = (DetailsViewHolder)view.getTag();
+            holder.updateViews(viewGroup.getContext(), dataPointList.get(i));
+            return view;
+        }
+
+        @Override
+        public boolean isChildSelectable(int i, int i1) {
+            return false;
+        }
+
     }
 
 }

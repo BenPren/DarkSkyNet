@@ -9,4 +9,11 @@
     <string name="temperature">Temperature: %.1f°</string>
     <string name="humidity">Humidity: %.0f%%</string>
     <string name="precipitation">Precipitation: %.0f%%</string>
+
+    <string name="could_cover">Could Cover: %.0f%%</string>
+    <string name="dew_point">Dew Point: %.0f%%</string>
+    <string name="sunrise">Sunrise: %s</string>
+    <string name="sunset">Sunset: %s</string>
+    <string name="min_temperature">Min Temperature: %.1f°</string>
+    <string name="max_temperature">Max Temperature: %.1f°</string>
 </resources>

@@ -1,4 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="general_padding">8dp</dimen>
+    <dimen name="expandable_margin">32dp</dimen>
 </resources>

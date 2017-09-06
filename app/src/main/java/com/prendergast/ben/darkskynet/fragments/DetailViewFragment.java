@@ -19,7 +19,7 @@ import android.zetterstrom.com.forecast.models.DataPoint;
 import android.zetterstrom.com.forecast.models.Forecast;
 
 import com.prendergast.ben.darkskynet.R;
-import com.prendergast.ben.darkskynet.model.ViewHolder;
+import com.prendergast.ben.darkskynet.model.ForecastViewHolder;
 import com.prendergast.ben.darkskynet.model.WeatherModel;
 
 import java.text.DateFormat;
@@ -112,10 +112,10 @@ public class DetailViewFragment extends Fragment implements Observer<Forecast>, 
         public View getView(int i, View view, ViewGroup viewGroup) {
             if(view == null) {
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_forecast, viewGroup, false);
-                view.setTag(new ViewHolder(view, DateFormat.getTimeInstance(DateFormat.DEFAULT)));
+                view.setTag(new ForecastViewHolder(view, DateFormat.getTimeInstance(DateFormat.DEFAULT)));
             }
 
-            ViewHolder holder = (ViewHolder)view.getTag();
+            ForecastViewHolder holder = (ForecastViewHolder)view.getTag();
             holder.updateViews(viewGroup.getContext(), dataPointList.get(i));
             return view;
         }

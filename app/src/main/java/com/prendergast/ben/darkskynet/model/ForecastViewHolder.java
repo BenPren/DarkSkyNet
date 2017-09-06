@@ -14,7 +14,7 @@ import java.text.DateFormat;
  * Created by doubl on 9/5/2017.
  */
 
-public class ViewHolder {
+public class ForecastViewHolder {
 
     private TextView timeText;
     private TextView humidityText;
@@ -24,7 +24,7 @@ public class ViewHolder {
 
     private DateFormat dateFormat;
 
-    public ViewHolder(View view, DateFormat dateFormat) {
+    public ForecastViewHolder(View view, DateFormat dateFormat) {
         this.dateFormat = dateFormat;
 
         timeText = view.findViewById(R.id.timeText);

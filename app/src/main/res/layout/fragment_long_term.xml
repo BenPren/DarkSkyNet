@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_light">
 
-    <ListView android:id="@+id/forecastList"
+    <ExpandableListView android:id="@+id/expandableForecastList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
-        android:divider="@null"
-        android:dividerHeight="@dimen/general_padding" />
+        android:divider="@color/colorPrimary"
+        android:dividerHeight="1dp" />
 
 </LinearLayout>
