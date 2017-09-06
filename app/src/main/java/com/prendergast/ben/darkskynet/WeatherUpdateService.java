@@ -38,25 +38,27 @@ public class WeatherUpdateService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-
+        Log.d("WeatherUpdateService", "onHandleIntent");
         String currentZip = getSharedPreferences(SHARED_PREFERENCES, MODE_PRIVATE).getString(ZIP_PREFERENCE, "");
 
         if(TextUtils.isEmpty(currentZip)) {
             return;
         }
 
-        Geocoder geocoder = new Geocoder(this);
-        try {
-            List<Address> addressList = geocoder.getFromLocationName(currentZip, 1);
-            if(addressList.size() != 1) {
-                return;
-            }
-
-            Address address = addressList.get(0);
-            requestWeatherForLocation(address.getLatitude(), address.getLongitude());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        requestWeatherForLocation(41.044331, -73.526235);
+//        try {
+//            Geocoder geocoder = new Geocoder(this);
+//            List<Address> addressList = geocoder.getFromLocationName(currentZip, 1);
+//            if(addressList.size() != 1) {
+//                return;
+//            }
+//
+//            Address address = addressList.get(0);
+//            requestWeatherForLocation(address.getLatitude(), address.getLongitude());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            requestWeatherForLocation(41.044331, -73.526235);
+//        }
 
     }
 
