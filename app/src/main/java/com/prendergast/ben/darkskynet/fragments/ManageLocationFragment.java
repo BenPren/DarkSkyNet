@@ -83,7 +83,7 @@ public class ManageLocationFragment extends Fragment implements TextView.OnEdito
         editor.putString(ZIP_PREFERENCE, zipCode);
         editor.apply();
 
-        WeatherUpdateService.startAlarmForService(getActivity(), true);
+        WeatherUpdateService.startAlarmForService(getActivity(), PendingIntent.FLAG_CANCEL_CURRENT, true);
         getFragmentManager().popBackStack();
     }
 }

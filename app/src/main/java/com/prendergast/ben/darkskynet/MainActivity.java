@@ -1,6 +1,7 @@
 package com.prendergast.ben.darkskynet;
 
 import android.app.FragmentTransaction;
+import android.app.PendingIntent;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.ViewModelProviders;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         setSupportActionBar(toolbar);
 
         broadcastReceiver = new DataUpdatedReceiver();
-        WeatherUpdateService.startAlarmForService(this, false);
+        WeatherUpdateService.startAlarmForService(this, PendingIntent.FLAG_NO_CREATE, false);
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.contentLayout, new DetailViewFragment());

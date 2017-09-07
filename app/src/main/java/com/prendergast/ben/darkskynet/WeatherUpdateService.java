@@ -81,7 +81,7 @@ public class WeatherUpdateService extends IntentService {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        startAlarmForService(WeatherUpdateService.this, true);
+                        startAlarmForService(WeatherUpdateService.this, PendingIntent.FLAG_CANCEL_CURRENT, false);
                     }
 
                     @Override
@@ -91,16 +91,9 @@ public class WeatherUpdateService extends IntentService {
                 });
     }
 
-    public static void startAlarmForService(Context context, boolean forceRefresh) {
-        PendingIntent pendingIntent;
-        if(forceRefresh) {
-            pendingIntent = PendingIntent.getService(context, 0, new Intent(context, WeatherUpdateService.class), PendingIntent.FLAG_CANCEL_CURRENT);
-        } else {
-            pendingIntent = PendingIntent.getService(context, 0, new Intent(context, WeatherUpdateService.class), PendingIntent.FLAG_NO_CREATE);
-        }
+    public static void startAlarmForService(Context context, int flags, boolean immediateRefresh) {
+        PendingIntent pendingIntent = PendingIntent.getService(context, 0, new Intent(context, WeatherUpdateService.class), flags);
         AlarmManager alarmManager = (AlarmManager)context.getSystemService(ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
-
-
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, immediateRefresh ? 0 : SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
     }
 }
