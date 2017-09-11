@@ -5,6 +5,7 @@
     <string name="current_zip">Current ZIP: %S</string>
     <string name="entering_will_remove">Entering a new ZIP will replace current.</string>
     <string name="enter_zip">Enter 5 digit ZIP</string>
+    <string name="update_error">Unable to find location.</string>
 
     <string name="temperature">Temperature: %.1f°</string>
     <string name="humidity">Humidity: %.0f%%</string>

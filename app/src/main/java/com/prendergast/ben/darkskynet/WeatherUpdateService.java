@@ -46,20 +46,19 @@ public class WeatherUpdateService extends IntentService {
             return;
         }
 
-        requestWeatherForLocation(41.044331, -73.526235);
-//        try {
-//            Geocoder geocoder = new Geocoder(this);
-//            List<Address> addressList = geocoder.getFromLocationName(currentZip, 1);
-//            if(addressList.size() != 1) {
-//                return;
-//            }
-//
-//            Address address = addressList.get(0);
-//            requestWeatherForLocation(address.getLatitude(), address.getLongitude());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            requestWeatherForLocation(41.044331, -73.526235);
-//        }
+        try {
+            Geocoder geocoder = new Geocoder(this);
+            List<Address> addressList = geocoder.getFromLocationName(currentZip, 1);
+            if(addressList.size() != 1) {
+                return;
+            }
+
+            Address address = addressList.get(0);
+            requestWeatherForLocation(address.getLatitude(), address.getLongitude());
+        } catch (IOException e) {
+            e.printStackTrace();
+            LocalBroadcastManager.getInstance(WeatherUpdateService.this).sendBroadcast(new Intent(MainActivity.ACTION_DATA_ERROR));
+        }
 
     }
 

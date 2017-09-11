@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
     public static final String SHARED_PREFERENCES = "com.prendergast.ben.darkskynet";
     public static final String ZIP_PREFERENCE = "String.ZIP_PREFERENCE";
     public static final String ACTION_DATA_UPDATED = "ACTION_DATA_UPDATED";
+    public static final String ACTION_DATA_ERROR = "ACTION_DATA_ERROR";
 
     private LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
     private BroadcastReceiver broadcastReceiver;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
         super.onResume();
 
         IntentFilter intentFilter = new IntentFilter(ACTION_DATA_UPDATED);
+        intentFilter.addAction(ACTION_DATA_ERROR);
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter);
         tryLoadData();
     }
@@ -79,8 +82,13 @@ public class MainActivity extends AppCompatActivity implements LifecycleRegistry
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            if(ACTION_DATA_UPDATED.equals(intent.getAction())) {
-                tryLoadData();
+            switch(intent.getAction()) {
+                case ACTION_DATA_ERROR:
+                    Snackbar.make(findViewById(R.id.contentLayout), R.string.update_error, Snackbar.LENGTH_LONG).show();
+                    break;
+                case ACTION_DATA_UPDATED:
+                    tryLoadData();
+                    break;
             }
         }
     }
