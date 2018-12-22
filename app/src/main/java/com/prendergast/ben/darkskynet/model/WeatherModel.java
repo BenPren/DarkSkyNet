@@ -1,8 +1,9 @@
 package com.prendergast.ben.darkskynet.model;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
 import android.zetterstrom.com.forecast.models.Forecast;
+
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 /**
  * Created by doubl on 9/4/2017.

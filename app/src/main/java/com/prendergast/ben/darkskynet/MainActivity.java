@@ -2,24 +2,25 @@ package com.prendergast.ben.darkskynet;
 
 import android.app.FragmentTransaction;
 import android.app.PendingIntent;
-import android.arch.lifecycle.LifecycleRegistry;
-import android.arch.lifecycle.LifecycleRegistryOwner;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.zetterstrom.com.forecast.models.Forecast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.prendergast.ben.darkskynet.fragments.DetailViewFragment;
 import com.prendergast.ben.darkskynet.model.WeatherModel;
 
 import java.io.IOException;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LifecycleRegistry;
+import androidx.lifecycle.LifecycleRegistryOwner;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 public class MainActivity extends AppCompatActivity implements LifecycleRegistryOwner {
 

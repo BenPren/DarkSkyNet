@@ -1,15 +1,10 @@
 package com.prendergast.ben.darkskynet.fragments;
 
-import android.app.AlarmManager;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -22,7 +17,8 @@ import android.widget.TextView;
 import com.prendergast.ben.darkskynet.R;
 import com.prendergast.ben.darkskynet.WeatherUpdateService;
 
-import static android.content.Context.ALARM_SERVICE;
+import androidx.annotation.Nullable;
+
 import static android.content.Context.MODE_PRIVATE;
 import static com.prendergast.ben.darkskynet.MainActivity.SHARED_PREFERENCES;
 import static com.prendergast.ben.darkskynet.MainActivity.ZIP_PREFERENCE;

@@ -1,6 +1,5 @@
 package com.prendergast.ben.darkskynet;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.PendingIntent;
@@ -9,8 +8,6 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
-import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.zetterstrom.com.forecast.ForecastClient;
@@ -20,6 +17,8 @@ import android.zetterstrom.com.forecast.models.Forecast;
 import java.io.IOException;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

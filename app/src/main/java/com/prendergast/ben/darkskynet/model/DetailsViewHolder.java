@@ -1,7 +1,6 @@
 package com.prendergast.ben.darkskynet.model;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 import android.zetterstrom.com.forecast.models.DataPoint;
@@ -9,6 +8,8 @@ import android.zetterstrom.com.forecast.models.DataPoint;
 import com.prendergast.ben.darkskynet.R;
 
 import java.text.DateFormat;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by doubl on 9/5/2017.

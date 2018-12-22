@@ -1,12 +1,13 @@
+//noinspection GradleDynamicVersion
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "com.prendergast.ben.darkskynet"
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -25,18 +26,18 @@ android {
 
 dependencies {
 
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "android.arch.lifecycle:runtime:1.0.0-alpha9"
-    compile "android.arch.lifecycle:extensions:1.0.0-alpha9"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha9"
-    compile 'android.zetterstrom.com.forecast:forecast:1.2.0'
-    compile 'com.android.support:cardview-v7:26.0.0'
+    implementation "androidx.lifecycle:lifecycle-runtime:2.1.0-alpha01"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0-alpha01"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.0.0"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.1.0-alpha01"
+    implementation 'android.zetterstrom.com.forecast:forecast:1.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
 
-    compile 'com.android.support:appcompat-v7:26.0.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:26.0.0'
-    testCompile 'junit:junit:4.12'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    testImplementation 'junit:junit:4.12'
 }
